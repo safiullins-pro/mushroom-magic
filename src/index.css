@@ -1,33 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Open+Sans:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Mario Mushroom Design System - Pixel perfect recreation */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Main theme colors matching the original site */
+    --mario-sky: 195 100% 85%; /* Light blue background */
+    --mario-yellow: 45 100% 70%; /* Product card yellow */
+    --mario-red: 0 85% 55%; /* Red buttons */
+    --mario-green: 120 50% 45%; /* Green accents */
+    --mario-orange: 25 100% 65%; /* Orange buttons */
+    --mario-dark: 220 20% 20%; /* Dark text */
+    --mario-white: 0 0% 100%; /* White backgrounds */
+    
+    /* Design system colors */
+    --background: var(--mario-sky);
+    --foreground: var(--mario-dark);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: var(--mario-yellow);
+    --card-foreground: var(--mario-dark);
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: var(--mario-white);
+    --popover-foreground: var(--mario-dark);
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: var(--mario-red);
+    --primary-foreground: var(--mario-white);
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: var(--mario-green);
+    --secondary-foreground: var(--mario-white);
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: var(--mario-orange);
+    --accent-foreground: var(--mario-white);
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -36,7 +46,7 @@ All colors MUST be HSL.
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
 
-    --radius: 0.5rem;
+    --radius: 8px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +110,99 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fredoka One', cursive;
+  }
+}
+
+@layer components {
+  .mario-btn-primary {
+    @apply bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold
+           hover:bg-primary/90 transition-all duration-200 
+           shadow-lg hover:shadow-xl border-2 border-primary/20;
+  }
+  
+  .mario-btn-secondary {
+    @apply bg-accent text-accent-foreground px-6 py-3 rounded-lg font-semibold
+           hover:bg-accent/90 transition-all duration-200
+           shadow-lg hover:shadow-xl border-2 border-accent/20;
+  }
+
+  .mario-card {
+    @apply bg-card rounded-xl shadow-lg hover:shadow-xl transition-all duration-300
+           border-4 border-card/30 p-6;
+  }
+
+  .mario-title {
+    @apply text-4xl font-bold text-center mb-8;
+    font-family: 'Fredoka One', cursive;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .mario-product-title {
+    @apply text-xl font-bold mb-2 text-center;
+    font-family: 'Fredoka One', cursive;
+  }
+
+  .mario-price {
+    @apply text-2xl font-bold text-center mb-3;
+    font-family: 'Fredoka One', cursive;
+  }
+
+  .mario-benefits {
+    @apply text-sm text-center mb-4 space-y-1;
+  }
+
+  .mario-nav-link {
+    @apply text-foreground hover:text-primary transition-colors duration-200 
+           font-semibold text-sm uppercase tracking-wide;
+  }
+
+  .smooth-scroll {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Responsive Design */
+@layer utilities {
+  @responsive {
+    .mario-title-responsive {
+      @apply text-2xl md:text-3xl lg:text-4xl;
+    }
+    
+    .mario-card-responsive {
+      @apply p-4 md:p-6;
+    }
+    
+    .mario-btn-responsive {
+      @apply px-4 py-2 text-sm md:px-6 md:py-3 md:text-base;
+    }
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .mario-title {
+    @apply text-2xl mb-6;
+  }
+  
+  .mario-product-title {
+    @apply text-lg;
+  }
+  
+  .mario-price {
+    @apply text-xl;
+  }
+  
+  .mario-nav-link {
+    @apply text-xs;
+  }
+  
+  .mario-card {
+    @apply p-4;
   }
 }
